@@ -9,6 +9,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  --color-border-prime: rgba(128, 128, 128, 0.5);
+  --color-btn-secondary: #fff;
+  --color-bg-secondary: #00f;
 }
 
 body {
@@ -55,3 +60,4 @@ img {
   max-width: 100%;
   height: auto;
 }
+
