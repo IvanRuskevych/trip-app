@@ -1,6 +1,7 @@
 import styles from "./ModalAddTrip.module.scss"
 import {useState} from "react";
 import icon from '../assets/icone-close.svg';
+import {fetchTodayWeather, fetchWeather} from "../api/apiRequests.js";
 
 
 const ModalAddTrip = () => {
@@ -10,8 +11,13 @@ const ModalAddTrip = () => {
     const [endDate, setEndDate] = useState("")
     const [isOpenModal, setIsOpenModal] = useState(false)
 
-    const handleSubmitForm = () => {
+    const handleSubmitForm = async () => {
+        const qqq = await fetchWeather(city, startDate,endDate)
+        console.log("qqq", qqq)
+        const qwe= await fetchTodayWeather(city)
+        console.log("qwe", qwe)
         setIsOpenModal(false)
+
     }
 
     const handleClearForm = (event) => {
@@ -51,7 +57,7 @@ const ModalAddTrip = () => {
 
             <div className={styles.btnWrapper}>
                 <button type={"button"} onClick={handleClearForm} className={styles.btn}>Cancel</button>
-                <button type={"submit"} onSubmit={ handleSubmitForm} form="tripForm"
+                <button type={"button"} onClick={handleSubmitForm} form="tripForm"
                         className={styles.btnSave}>Save
                 </button>
             </div>
