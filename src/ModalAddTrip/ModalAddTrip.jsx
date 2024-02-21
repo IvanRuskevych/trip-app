@@ -3,6 +3,11 @@ import {useState, useEffect} from "react";
 import icon from '../assets/icone-close.svg';
 import PropTypes from "prop-types";
 
+
+// const cities=[{
+//     city:"London",
+// }]
+
 const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [city, setCity] = useState("");
     const [startDate, setStartDate] = useState("");
@@ -59,6 +64,7 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                     <option value="">Please select a city</option>
                     <option value={"New York"}>New York</option>
                     <option value={"London"}>London</option>
+                    <option value={"Washington"}>Washington</option>
                 </select>
 
                 <label htmlFor="startDate" className={styles.label}>

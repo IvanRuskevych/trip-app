@@ -3,16 +3,12 @@ import styles from "./TripsList.module.scss"
 
 import imgs from "../assets/images/london-min.jpg"
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
+import PropTypes from "prop-types";
 
-const cities = [
-    {city: "London1", startDate: "1", endDate: "2", photo: ""},
-    {city: "London2", startDate: "1", endDate: "2", photo: ""},
-    {city: "London3", startDate: "1", endDate: "2", photo: ""},
-]
-const TripsList = () => {
+
+const TripsList = ({onTripSelect}) => {
 
     const [trips, setTrips] = useState([])
-    const [selectedTrip, setSelectedTrip] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
 
@@ -23,10 +19,10 @@ const TripsList = () => {
 
     useEffect(() => {
         if (trips?.length) {
-
             localStorage.setItem('trips', JSON.stringify(trips));
         }
     }, [trips]);
+
 
     const addTrip = (trip) => {
         setTrips(prevTrips => [...prevTrips, trip]);
@@ -40,8 +36,8 @@ const TripsList = () => {
                 <ul className={styles.tripsList}>
                     {trips.map((trip, index) =>
                         (<li key={index} className={styles.trip}>
-                            <div onClick={() => setSelectedTrip(trip)}>
-                                <img src={imgs} alt="photo" width={"250px"}/>
+                            <div onClick={() => onTripSelect(trip)}>
+                                <img src={imgs} alt="city photo" width={"250px"}/>
                                 <div className={styles.textWrapper}>
                                     <p className={styles.TitleCity}>{trip.city}</p>
                                     <p className={styles.textDate}>{trip.startDate} - {trip.endDate}</p>
@@ -56,4 +52,8 @@ const TripsList = () => {
     );
 };
 
+
+TripsList.propTypes = {
+    onTripSelect: PropTypes.func.isRequired
+}
 export default TripsList;
