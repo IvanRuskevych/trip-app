@@ -6,7 +6,7 @@ const mainInstance = axios.create({
 })
 
 
-export const fetchWeather = async (city, startDate) => {
+export const fetchWeekWeather = async (city, startDate) => {
     const endDate = new Date(new Date(startDate).getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
     // console.log("week", startDate, endDate)
     try {
