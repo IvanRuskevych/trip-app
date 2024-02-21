@@ -1,21 +1,30 @@
 .modal {
   width: 650px;
-  border: 1px solid var(--color-border-prime);
+  border: 1px solid var(--color-border-primery);
   display: none;
 
-  &.open{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+
+  z-index: 111;
+
+  &.open {
     display: block;
   }
 }
 
+
 .modalTitle {
   position: relative;
   margin-bottom: 30px;
-  border-bottom: 1px solid var(--color-border-prime);
-  padding: 10px 25px;
+  border-bottom: 1px solid var(--color-border-primery);
+  padding: 20px 25px;
 }
 
-.btnClose{
+.btnClose {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -39,7 +48,7 @@
     margin-bottom: 15px;
     padding: 0 10px;
     height: 45px;
-    border: 1px solid var(--color-border-prime);
+    border: 1px solid var(--color-border-primery);
     border-radius: 4px;
   }
 
@@ -53,8 +62,8 @@
 .btnWrapper {
   display: flex;
   justify-content: flex-end;
-  border-top: 1px solid var(--color-border-prime);
-padding: 15px;
+  border-top: 1px solid var(--color-border-primery);
+  padding: 20px;
 
 }
 

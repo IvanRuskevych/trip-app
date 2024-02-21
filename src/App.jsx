@@ -1,11 +1,12 @@
 import {Title} from './Title/Title';
-import ModalAddTrip from "./ModalAddTrip/ModalAddTrip.jsx";
 import styles from "./App.module.scss"
+import TripsList from "./TripsList/TripsList.jsx";
+
 function App() {
     return (
         <div className={styles.container}>
             <Title/>
-            <ModalAddTrip/>
+            <TripsList/>
         </div>
     );
 }
