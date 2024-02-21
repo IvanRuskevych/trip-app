@@ -3,19 +3,14 @@ import styles from "./TripsList.module.scss"
 
 import imgs from "../assets/images/london-min.jpg"
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
-import {fetchTodayWeather, fetchWeather} from "../api/apiRequests.js";
-import {getWeatherDataForWeek} from "../utils/weatherDataForWeek.js";
+import PropTypes from "prop-types";
 
-const TripsList = () => {
+
+const TripsList = ({onTripSelect}) => {
 
     const [trips, setTrips] = useState([])
-    const [selectedTrip, setSelectedTrip] = useState(null)
-    const [tripWeather, setTripWeather] = useState(null)
-    const [tripWeatherToday, setTripWeatherToday] = useState(null)
     const [showModal, setShowModal] = useState(false)
-    // console.log("selectedTrip", selectedTrip)
-    console.log("tripWeather", tripWeather)
-    // console.log("tripWeatherToday", tripWeatherToday)
+
 
     useEffect(() => {
         const storedTrips = JSON.parse(localStorage.getItem('trips'));
@@ -27,27 +22,6 @@ const TripsList = () => {
             localStorage.setItem('trips', JSON.stringify(trips));
         }
     }, [trips]);
-
-    useEffect(() => {
-        if (selectedTrip) {
-            const {city, startDate} = selectedTrip
-
-            fetchWeather(city, startDate).then(weatherData => {
-                const weatherDataForWeek = getWeatherDataForWeek(weatherData.days)
-                setTripWeather(weatherDataForWeek)
-            }).catch(error => {
-                console.error("Error fetching weather data:", error);
-            })
-
-            fetchTodayWeather(city).then(weatherData => {
-                setTripWeatherToday(weatherData)
-            }).catch(error => {
-                console.error("Error fetching weather data:", error);
-            })
-        }
-
-
-    }, [selectedTrip]);
 
 
     const addTrip = (trip) => {
@@ -62,7 +36,7 @@ const TripsList = () => {
                 <ul className={styles.tripsList}>
                     {trips.map((trip, index) =>
                         (<li key={index} className={styles.trip}>
-                            <div onClick={() => setSelectedTrip(trip)}>
+                            <div onClick={() => onTripSelect(trip)}>
                                 <img src={imgs} alt="city photo" width={"250px"}/>
                                 <div className={styles.textWrapper}>
                                     <p className={styles.TitleCity}>{trip.city}</p>
@@ -78,4 +52,8 @@ const TripsList = () => {
     );
 };
 
+
+TripsList.propTypes = {
+    onTripSelect: PropTypes.func.isRequired
+}
 export default TripsList;
