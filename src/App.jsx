@@ -1,10 +1,10 @@
-import {Title} from './Title/Title';
+import {Title} from './components/Title/Title';
 import styles from "./App.module.scss"
-import TripsList from "./TripsList/TripsList.jsx";
-import WeekWeather from "./WeekWeather/WeekWeather.jsx";
+import TripsList from "./components/TripsList/TripsList.jsx";
+import WeekWeather from "./components/WeekWeather/WeekWeather.jsx";
 import {useEffect, useState} from "react";
 import getWeatherData from "./utils/getWeatherData.js";
-import TodayWeather from "./TodayWeather/TodayWeather.jsx";
+import TodayWeather from "./components/TodayWeather/TodayWeather.jsx";
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
@@ -14,15 +14,13 @@ function App() {
     const [weatherWeek, setWeatherWeek] = useState(null)
     const [weatherToday, setWeatherToday] = useState(null)
     const [city, setCity] = useState("")
-    // console.log("selectedTrip", selectedTrip)
-    // console.log("weatherWeek", weatherWeek)
-    // console.log("weatherToday", weatherToday)
-    // console.log("city", city)
+    const [startDate, setStartDate] = useState("")
 
     const handleTripSelect = (trip) => {
         setSelectedTrip([trip])
         const {city, startDate} = trip
         setCity(city)
+        setStartDate(startDate)
         getWeatherData(city, startDate, setWeatherWeek, setWeatherToday)
     }
 
@@ -33,10 +31,11 @@ function App() {
         const weatherToday = JSON.parse(localStorage.getItem("weatherToday"))
         if (selectedTrip) {
             setSelectedTrip(selectedTrip)
-        } else{setSelectedTrip(initialSelectedTrip)}
+        } else {
+            setSelectedTrip(initialSelectedTrip)
+        }
         if (weatherWeek) setWeatherWeek(weatherWeek)
         if (weatherToday) setWeatherToday(weatherToday)
-        // if (!selectedTrip && !weatherWeek && !weatherToday) getWeatherData({...initialSelectedTrip, setWeatherWeek, setWeatherToday})
     }, []);
 
     useEffect(() => {
@@ -55,7 +54,7 @@ function App() {
                     <WeekWeather weatherWeek={weatherWeek}/>
                 </div>
             </div>
-            <TodayWeather city={city} weatherToday={weatherToday}/>
+            <TodayWeather city={city} weatherToday={weatherToday} startDate={startDate}/>
         </div>
     )
         ;

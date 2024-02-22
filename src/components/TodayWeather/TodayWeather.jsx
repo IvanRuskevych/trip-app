@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "./TodayWeather.module.scss";
-import icon from "../assets/weatherIcons/rain.svg";
+import icon from "../../../public/assets/weatherIcons/rain.svg";
+import CountdownTimer from "../CountdownTimer/CountdownTimer.jsx";
 
-const TodayWeather = ({city, weatherToday}) => {
-
+const TodayWeather = ({city, weatherToday, startDate}) => {
     const weather = weatherToday && weatherToday[0];
 
     if (!weather) {
@@ -19,13 +19,16 @@ const TodayWeather = ({city, weatherToday}) => {
             </div>
             <p className={styles.text}>{city}</p>
 
+            <CountdownTimer startDate={startDate} />
         </div>
     );
 };
 
 TodayWeather.propTypes = {
     weatherToday: PropTypes.array,
-    city:PropTypes.string
+    city: PropTypes.string,
+    startDate: PropTypes.string
+
 };
 
 export default TodayWeather;

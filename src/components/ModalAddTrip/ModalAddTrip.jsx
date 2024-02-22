@@ -1,12 +1,7 @@
 import styles from "./ModalAddTrip.module.scss";
 import {useState, useEffect} from "react";
-import icon from '../assets/icone-close.svg';
+import icon from '../../../public/assets/icone-close.svg';
 import PropTypes from "prop-types";
-
-
-// const cities=[{
-//     city:"London",
-// }]
 
 const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [city, setCity] = useState("");
