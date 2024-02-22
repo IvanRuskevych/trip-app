@@ -8,6 +8,7 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
+
     useEffect(() => {
         const handleEscKey = (event) => {
             if (event.keyCode === 27) {
