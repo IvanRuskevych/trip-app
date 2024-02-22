@@ -1,10 +1,9 @@
-import {Title} from './components/Title/Title';
-import styles from "./App.module.scss"
+import {useEffect, useState} from "react";
+import {getWeatherData} from "./utils";
 import TripsList from "./components/TripsList/TripsList.jsx";
 import WeekWeather from "./components/WeekWeather/WeekWeather.jsx";
-import {useEffect, useState} from "react";
-import getWeatherData from "./utils/getWeatherData.js";
 import TodayWeather from "./components/TodayWeather/TodayWeather.jsx";
+import styles from "./App.module.scss"
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
@@ -23,7 +22,6 @@ function App() {
         setStartDate(startDate)
         getWeatherData(city, startDate, setWeatherWeek, setWeatherToday)
     }
-
 
     useEffect(() => {
         const selectedTrip = JSON.parse(localStorage.getItem("selectedTrip"))
@@ -46,18 +44,14 @@ function App() {
     }, [selectedTrip, weatherWeek, weatherToday]);
 
     return (
-        <div className={styles.container2}>
-            <div className={styles.container}>
-                <Title/>
-                <div>
-                    <TripsList onTripSelect={handleTripSelect}/>
-                    <WeekWeather weatherWeek={weatherWeek}/>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                <TripsList onTripSelect={handleTripSelect}/>
+                <WeekWeather weatherWeek={weatherWeek}/>
             </div>
             <TodayWeather city={city} weatherToday={weatherToday} startDate={startDate}/>
         </div>
-    )
-        ;
+    );
 }
 
 export default App;

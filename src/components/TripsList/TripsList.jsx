@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
 import styles from "./TripsList.module.scss"
 
-import searchIcon from "../../../public/assets/search.svg"
+import searchIcon from "../../../public/assets/svg/search.svg"
 import imgs from "../../../public/assets/images/london.jpg"
 import images from "../../../public/assets/images"
 
@@ -55,6 +55,7 @@ const TripsList = ({onTripSelect}) => {
 
     return (
         <>
+            <h1 className={styles.title}>Weather <span className={styles.titleFont}>Forecast</span></h1>
             <div className={styles.searchWrapper}>
                 <input
                     type="text"
@@ -63,7 +64,7 @@ const TripsList = ({onTripSelect}) => {
                     onChange={(e) => setSearchText(e.target.value)}
                     className={styles.search}
                 />
-                <img src={searchIcon} alt="x" className={styles.icon}/>
+                <img src={searchIcon} alt="x" className={styles.searchIcon}/>
             </div>
 
             <div className={styles.wrapper}>

@@ -1,11 +1,10 @@
 import {fetchTodayWeather, fetchWeekWeather} from "../api/apiRequests.js";
 import {weatherData} from "./weatherData.js";
 
-
 export const getWeatherData = (city, startDate, setTripWeather, setTripWeatherToday) => {
     fetchWeekWeather(city, startDate).then(data => {
         console.log("fetchWeekWeather", data.days)
-                const weatherDataForWeek = weatherData(data.days)
+        const weatherDataForWeek = weatherData(data.days)
         setTripWeather(weatherDataForWeek)
     }).catch(error => {
         console.error("Error fetching weather data:", error);
@@ -20,5 +19,3 @@ export const getWeatherData = (city, startDate, setTripWeather, setTripWeatherTo
         console.error("Error fetching weather data:", error);
     })
 };
-
-export default getWeatherData;
