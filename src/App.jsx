@@ -6,28 +6,37 @@ import {useEffect, useState} from "react";
 import getWeatherData from "./utils/getWeatherData.js";
 import TodayWeather from "./TodayWeather/TodayWeather.jsx";
 
+const initialSelectedTrip = [
+    {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
+
 function App() {
     const [selectedTrip, setSelectedTrip] = useState(null)
     const [weatherWeek, setWeatherWeek] = useState(null)
     const [weatherToday, setWeatherToday] = useState(null)
+    const [city, setCity] = useState("")
     // console.log("selectedTrip", selectedTrip)
     // console.log("weatherWeek", weatherWeek)
     // console.log("weatherToday", weatherToday)
+    // console.log("city", city)
 
     const handleTripSelect = (trip) => {
         setSelectedTrip([trip])
         const {city, startDate} = trip
+        setCity(city)
         getWeatherData(city, startDate, setWeatherWeek, setWeatherToday)
     }
 
 
     useEffect(() => {
-        const userTrip = JSON.parse(localStorage.getItem("selectedTrip"))
+        const selectedTrip = JSON.parse(localStorage.getItem("selectedTrip"))
         const weatherWeek = JSON.parse(localStorage.getItem('weatherWeek'));
         const weatherToday = JSON.parse(localStorage.getItem("weatherToday"))
-        if (userTrip) setSelectedTrip(userTrip)
+        if (selectedTrip) {
+            setSelectedTrip(selectedTrip)
+        } else{setSelectedTrip(initialSelectedTrip)}
         if (weatherWeek) setWeatherWeek(weatherWeek)
         if (weatherToday) setWeatherToday(weatherToday)
+        // if (!selectedTrip && !weatherWeek && !weatherToday) getWeatherData({...initialSelectedTrip, setWeatherWeek, setWeatherToday})
     }, []);
 
     useEffect(() => {
@@ -46,7 +55,7 @@ function App() {
                     <WeekWeather weatherWeek={weatherWeek}/>
                 </div>
             </div>
-            <TodayWeather selectedTrip={selectedTrip} weatherToday={weatherToday}/>
+            <TodayWeather city={city} weatherToday={weatherToday}/>
         </div>
     )
         ;

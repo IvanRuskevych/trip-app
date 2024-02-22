@@ -8,14 +8,17 @@ const WeekWeather = ({weatherWeek}) => {
     // console.log("weatherWeek", weatherWeek)
 
     return (
-        <ul className={styles.weatherList}>
-            {weatherWeek && weatherWeek.map((item, index) => (
-                <li key={index} className={styles.day}>
-                    <p className={styles.text}>{item.weekDay}</p>
-                    <img src={icon} alt={item.icon} className={styles.dayIcon}/>
-                    <p className={styles.text}>{`${item.tempmax}°/${item.tempmin}°`}</p>
-                </li>))}
-        </ul>
+        <>
+            {weatherWeek && <h2 className={styles.title}>Week</h2>}
+            <ul className={styles.weatherList}>
+                {weatherWeek && weatherWeek.map((item, index) => (
+                    <li key={index} className={styles.day}>
+                        <p className={styles.text}>{item.weekDay}</p>
+                        <img src={icon} alt={item.icon} className={styles.dayIcon}/>
+                        <p className={styles.text}>{`${item.tempmax}°/${item.tempmin}°`}</p>
+                    </li>))}
+            </ul>
+        </>
     );
 };
 

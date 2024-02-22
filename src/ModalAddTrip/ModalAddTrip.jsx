@@ -50,7 +50,7 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                 </button>
             </div>
 
-            <form action="" id="tripForm" className={styles.modalForm}>
+            <form action="" id="tripForm" className={styles.modalForm} aria-required={"true"}>
                 <label htmlFor="city" className={styles.label}>
                     City
                 </label>

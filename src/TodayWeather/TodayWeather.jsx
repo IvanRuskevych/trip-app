@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 import styles from "./TodayWeather.module.scss";
 import icon from "../assets/weatherIcons/rain.svg";
 
-const TodayWeather = ({selectedTrip, weatherToday}) => {
-    const city = selectedTrip && selectedTrip[0].city;
+const TodayWeather = ({city, weatherToday}) => {
     const weather = weatherToday && weatherToday[0];
 
     if (!weather) {
@@ -25,7 +24,7 @@ const TodayWeather = ({selectedTrip, weatherToday}) => {
 
 TodayWeather.propTypes = {
     weatherToday: PropTypes.array,
-    selectedTrip: PropTypes.array,
+    city:PropTypes.string
 };
 
 export default TodayWeather;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {calculateEndDate} from "../utils/culculateEndDate.js";
 
 const API_KEY = "3G8UQ7LAJ2F78S9TF9P97DVZB"
 const mainInstance = axios.create({
@@ -7,7 +8,8 @@ const mainInstance = axios.create({
 
 
 export const fetchWeekWeather = async (city, startDate) => {
-    const endDate = new Date(new Date(startDate).getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    // const endDate = new Date(new Date(startDate).getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const endDate = calculateEndDate(startDate, 6);
     // console.log("week", startDate, endDate)
     try {
         const response = await mainInstance.get(`/${city}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${API_KEY}&contentType=json`)

@@ -2,18 +2,36 @@
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  padding: 20px;
-
+  //padding: 0 20px;
 
 }
 
-.trip {
+.searchWrapper {
+  position: relative;
+  display: inline-block;
+}
 
+.search {
+  height: 60px;
+  padding-left: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.1);
+
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 15px; /* Позиціонуємо праворуч з невеликим відступом */
+  transform: translateY(-50%);
 
 }
 
 .wrapper {
   display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
 }
 
 .textWrapper {
@@ -41,4 +59,11 @@
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0.4px;
+}
+
+.btn {
+  margin-left: 30px;
+  padding: 20px;
+  height: 140px;
+  width: 200px;
 }
