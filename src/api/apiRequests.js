@@ -1,11 +1,10 @@
 import axios from "axios";
-import {calculateEndDate} from "../utils/culculateEndDate.js";
+import {calculateEndDate} from "../utils";
 
 const API_KEY = "3G8UQ7LAJ2F78S9TF9P97DVZB"
 const mainInstance = axios.create({
     baseURL: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline"
 })
-
 
 export const fetchWeekWeather = async (city, startDate) => {
     // const endDate = new Date(new Date(startDate).getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);

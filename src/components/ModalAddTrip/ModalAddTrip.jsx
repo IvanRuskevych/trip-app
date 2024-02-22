@@ -1,12 +1,16 @@
-import styles from "./ModalAddTrip.module.scss";
-import {useState, useEffect} from "react";
-import icon from '../../../public/assets/icone-close.svg';
 import PropTypes from "prop-types";
+import {useState, useEffect} from "react";
+
+import icon from '../../../public/assets/svg/close.svg';
+import styles from "./ModalAddTrip.module.scss";
+
+import {cities} from "../../data/index.js";
 
 const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [city, setCity] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [isFormValid, setIsFormValid] = useState(false)
 
 
     useEffect(() => {
@@ -24,10 +28,15 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
         };
     }, [isOpenModal, setIsOpenModal]);
 
+
+    useEffect(() => {
+        checkFormValidity()
+    }, [city, startDate, endDate])
     const handleSubmitForm = (e) => {
         e?.preventDefault();
         addTrip({city, startDate, endDate});
         setIsOpenModal(false);
+        handleClearForm(e)
     };
 
     const handleClearForm = (event) => {
@@ -35,6 +44,11 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
         setCity("");
         setStartDate("");
         setEndDate("");
+    };
+
+    const checkFormValidity = () => {
+        const isValid = city !== '' && startDate !== '' && endDate !== '';
+        setIsFormValid(isValid);
     };
 
     return (
@@ -58,9 +72,7 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                     className={styles.input}
                 >
                     <option value="">Please select a city</option>
-                    <option value={"New York"}>New York</option>
-                    <option value={"London"}>London</option>
-                    <option value={"Washington"}>Washington</option>
+                    {cities.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                 </select>
 
                 <label htmlFor="startDate" className={styles.label}>
@@ -92,7 +104,8 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                 <button type="button" onClick={handleClearForm} className={styles.btn}>
                     Cancel
                 </button>
-                <button type="button" form="tripForm" className={styles.btnSave} onClick={handleSubmitForm}>
+                <button type="button" form="tripForm" className={styles.btnSave} onClick={handleSubmitForm}
+                        disabled={!isFormValid}>
                     Save
                 </button>
             </div>
