@@ -1,8 +1,12 @@
+.title{
+  padding: 20px 0;
+}
+
 .weatherList {
   display: flex;
   gap: 30px;
   align-self: flex-start;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .day {

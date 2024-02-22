@@ -1,17 +1,21 @@
-import {fetchTodayWeather, fetchWeather} from "../api/apiRequests.js";
-import {getWeatherDataForWeek} from "./weatherDataForWeek.js";
+import {fetchTodayWeather, fetchWeekWeather} from "../api/apiRequests.js";
+import {weatherData} from "./weatherData.js";
 
 
 export const getWeatherData = (city, startDate, setTripWeather, setTripWeatherToday) => {
-    fetchWeather(city, startDate).then(weatherData => {
-        const weatherDataForWeek = getWeatherDataForWeek(weatherData.days)
+    fetchWeekWeather(city, startDate).then(data => {
+        console.log("fetchWeekWeather", data.days)
+                const weatherDataForWeek = weatherData(data.days)
         setTripWeather(weatherDataForWeek)
     }).catch(error => {
         console.error("Error fetching weather data:", error);
     })
 
-    fetchTodayWeather(city).then(weatherData => {
-        setTripWeatherToday(weatherData)
+    fetchTodayWeather(city).then(data => {
+        console.log("fetchTodayWeather", data.days)
+        const weatherDataForToday = weatherData(data.days)
+        setTripWeatherToday(weatherDataForToday)
+
     }).catch(error => {
         console.error("Error fetching weather data:", error);
     })
