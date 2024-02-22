@@ -1,0 +1,20 @@
+.timer {
+  display: flex;
+}
+.field {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value {
+  font-size: 150%;
+  color: white;
+}
+.label {
+  font-size: 75%;
+  text-transform: uppercase;
+  color: white;
+
+}

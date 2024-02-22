@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
 import styles from "./TripsList.module.scss"
 
-import imgs from "../assets/images/london-min.jpg"
+import searchIcon from "../../../public/assets/search.svg"
+import imgs from "../../../public/assets/images/london-min.jpg"
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
@@ -55,7 +56,7 @@ const TripsList = ({onTripSelect}) => {
                     onChange={(e) => setSearchText(e.target.value)}
                     className={styles.search}
                 />
-                <img src="../assets/search.svg" alt="x" className={styles.icon}/>
+                <img src={searchIcon} alt="x" className={styles.icon}/>
             </div>
 
             <div className={styles.wrapper}>
