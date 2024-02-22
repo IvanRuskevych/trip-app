@@ -4,7 +4,8 @@ import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
 import styles from "./TripsList.module.scss"
 
 import searchIcon from "../../../public/assets/search.svg"
-import imgs from "../../../public/assets/images/london-min.jpg"
+import imgs from "../../../public/assets/images/london.jpg"
+import images from "../../../public/assets/images"
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
@@ -15,6 +16,12 @@ const TripsList = ({onTripSelect}) => {
     const [showModal, setShowModal] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [filteredTrips, setFilteredTrips] = useState([]);
+
+    console.log("filteredTrips", filteredTrips)
+
+    const modifiedText = (text) => {
+        return text.replace(/\s/g, "").toLowerCase();
+    }
 
     useEffect(() => {
         const storedTrips = JSON.parse(localStorage.getItem('trips'));
@@ -65,7 +72,7 @@ const TripsList = ({onTripSelect}) => {
                     {filteredTrips?.map((trip, index) =>
                         (<li key={index} className={styles.trip}>
                             <div onClick={() => onTripSelect(trip)}>
-                                <img src={imgs} alt="city photo" width={"200px"}/>
+                                <img src={images[modifiedText(trip.city)]} alt={trip.city} className={styles.image}/>
                                 <div className={styles.textWrapper}>
                                     <p className={styles.TitleCity}>{trip.city}</p>
                                     <p className={styles.textDate}>{trip.startDate} - {trip.endDate}</p>

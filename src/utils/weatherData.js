@@ -4,6 +4,7 @@ export const weatherData = (data) => {
     return data.map((item) => {
         const {datetime, icon, tempmax, tempmin, temp} = item
         const weekDay = getDayOfWeek(datetime)
-        return {weekDay, icon, tempmax, tempmin, temp}
+        const iconName = icon.replace(/-/g, "");
+        return {weekDay, icon: iconName, tempmax, tempmin, temp}
     })
 }
