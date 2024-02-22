@@ -3,6 +3,7 @@ import styles from "./TodayWeather.module.scss";
 import icon from "../assets/weatherIcons/rain.svg";
 
 const TodayWeather = ({city, weatherToday}) => {
+
     const weather = weatherToday && weatherToday[0];
 
     if (!weather) {

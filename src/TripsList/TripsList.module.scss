@@ -1,9 +1,19 @@
 .tripsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  //padding: 0 20px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 25px;
 
+  // styles for list scrollable
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.trip {
+  // styles for list scrollable
+  width: 30%;
+  margin-right: 10px;
+  vertical-align: top;
 }
 
 .searchWrapper {
@@ -23,7 +33,7 @@
 .icon {
   position: absolute;
   top: 50%;
-  left: 15px; /* Позиціонуємо праворуч з невеликим відступом */
+  left: 15px;
   transform: translateY(-50%);
 
 }

@@ -72,7 +72,7 @@ const TripsList = ({onTripSelect}) => {
                             </div>
                         </li>))}
                 </ul>
-                <button onClick={() => setShowModal(true)} className={styles.btn}>Add trip</button>
+                <button onClick={() => setShowModal(true)} className={styles.btn}>+ <br/> Add trip</button>
             </div>
 
             <ModalAddTrip addTrip={addTrip} isOpenModal={showModal} setIsOpenModal={setShowModal}/>
