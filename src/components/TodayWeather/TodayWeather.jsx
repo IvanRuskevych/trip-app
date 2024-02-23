@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import styles from "./TodayWeather.module.scss";
-// import icon from "../../../public/assets/weatherIcons/rain.svg";
 import CountdownTimer from "../CountdownTimer/CountdownTimer.jsx";
 import icons from "../../../public/assets/weatherIcons/index.js";
 import ping from "../../../public/assets/images/ping-icon.png"
+import styles from "./TodayWeather.module.scss";
 
 const TodayWeather = ({city, weatherToday, startDate}) => {
     const weather = weatherToday && weatherToday[0];

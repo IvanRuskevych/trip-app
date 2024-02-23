@@ -1,6 +1,5 @@
 import {fetchTodayWeather, fetchWeekWeather} from "../api/apiRequests.js";
 import {weatherData} from "./weatherData.js";
-
 export const getWeatherData = (city, startDate, setTripWeather, setTripWeatherToday) => {
     fetchWeekWeather(city, startDate).then(data => {
         const weatherDataForWeek = weatherData(data.days)

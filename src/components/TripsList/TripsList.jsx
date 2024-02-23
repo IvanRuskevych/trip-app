@@ -1,23 +1,19 @@
 import {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
+import {sortTripsByStartDate} from "../../utils";
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip.jsx";
-import styles from "./TripsList.module.scss"
-
-import searchIcon from "../../../public/assets/svg/search.svg"
-import imgs from "../../../public/assets/images/london.jpg"
 import images from "../../../public/assets/images"
-import {sortTripsByStartDate} from "../../utils/sortTripsByStartDate.js";
+import searchIcon from "../../../public/assets/svg/search.svg"
+import styles from "./TripsList.module.scss"
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
 
 const TripsList = ({onTripSelect}) => {
-
     const [trips, setTrips] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [filteredTrips, setFilteredTrips] = useState([]);
-    console.log("trips", trips)
 
     const modifiedText = (text) => {
         return text.replace(/\s/g, "").toLowerCase();
@@ -51,9 +47,7 @@ const TripsList = ({onTripSelect}) => {
 
     const addTrip = (trip) => {
         setTrips(prevTrips => sortTripsByStartDate([...prevTrips, trip]));
-        // setTrips(sortTripsByStartDate(prevTrips => [...prevTrips, trip]));
     };
-
 
     return (
         <>
@@ -68,9 +62,7 @@ const TripsList = ({onTripSelect}) => {
                 />
                 <img src={searchIcon} alt="x" className={styles.searchIcon}/>
             </div>
-
             <div className={styles.wrapper}>
-
                 <ul className={styles.tripsList}>
                     {filteredTrips?.map((trip, index) =>
                         (<li key={index} className={styles.trip}>
@@ -85,12 +77,10 @@ const TripsList = ({onTripSelect}) => {
                 </ul>
                 <button onClick={() => setShowModal(true)} className={styles.btn}>+ <br/> Add trip</button>
             </div>
-
             <ModalAddTrip addTrip={addTrip} isOpenModal={showModal} setIsOpenModal={setShowModal}/>
         </>
     );
 };
-
 
 TripsList.propTypes = {
     onTripSelect: PropTypes.func.isRequired
