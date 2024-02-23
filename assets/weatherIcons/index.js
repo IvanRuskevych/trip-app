@@ -21,7 +21,6 @@ import thundershowersnight from "./thunder-showers-night.svg"
 import thunder from "./thunder.svg"
 import wind from "./wind.svg"
 
-
 const icons = {
     rain,
     fog,
