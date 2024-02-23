@@ -7,6 +7,7 @@ import styles from "./App.module.scss"
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
+console.log("initialSelectedTrip", initialSelectedTrip[0].city)
 
 function App() {
     const [selectedTrip, setSelectedTrip] = useState(null)
@@ -14,7 +15,6 @@ function App() {
     const [weatherToday, setWeatherToday] = useState(null)
     const [city, setCity] = useState("London")
     const [startDate, setStartDate] = useState("")
-
     const handleTripSelect = (trip) => {
         setSelectedTrip([trip])
         const {city, startDate} = trip
@@ -30,6 +30,7 @@ function App() {
         if (selectedTrip) {
             setSelectedTrip(selectedTrip)
         } else {
+            getWeatherData(initialSelectedTrip[0].city, initialSelectedTrip[0].startDate, setWeatherWeek, setWeatherToday)
             setSelectedTrip(initialSelectedTrip)
         }
         if (weatherWeek) setWeatherWeek(weatherWeek)
