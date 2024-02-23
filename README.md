@@ -1,5 +1,7 @@
 # Trip App
 
+![Trip App](public/assets/images/TripAppScreenshort.png)
+
 - This application, built using React.js, allows users to plan their trips while checking the weather forecast for their destinations. Users can perform the following actions:
 - `View Trips`: Upon starting the application, users are provided with a list of trips, with each trip displaying a forecast for each day of the journey. The list is scrollable, ensuring ease of navigation.
 - `Search for Trips`: Users can search for specific trips using the search functionality located at the top of the page.
