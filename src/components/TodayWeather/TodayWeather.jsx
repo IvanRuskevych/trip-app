@@ -7,14 +7,10 @@ import styles from "./TodayWeather.module.scss";
 const TodayWeather = ({city, weatherToday, startDate}) => {
     const weather = weatherToday && weatherToday[0];
 
-    if (!weather) {
-        return null;
-    }
-
     return (
-
         <div className={styles.weatherContainer}>
             <img src={ping} alt={"ping"} className={styles.iconPing}/>
+
             <p className={styles.text}>{weather?.weekDay}</p>
             <div className={styles.wrapper}>
                 <img src={icons[weather?.icon]} alt={weather?.icon} className={styles.iconWeather}/>
