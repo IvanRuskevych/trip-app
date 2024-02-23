@@ -17,7 +17,6 @@ const TripsList = ({onTripSelect}) => {
     const [searchText, setSearchText] = useState('');
     const [filteredTrips, setFilteredTrips] = useState([]);
 
-    console.log("filteredTrips", filteredTrips)
 
     const modifiedText = (text) => {
         return text.replace(/\s/g, "").toLowerCase();

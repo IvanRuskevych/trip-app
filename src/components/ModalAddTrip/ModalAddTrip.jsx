@@ -5,6 +5,7 @@ import icon from '../../../public/assets/svg/close.svg';
 import styles from "./ModalAddTrip.module.scss";
 
 import {cities} from "../../data/index.js";
+import {calculatedDate} from "../../utils/index.js";
 
 const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [city, setCity] = useState("");
@@ -12,6 +13,8 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [endDate, setEndDate] = useState("");
     const [isFormValid, setIsFormValid] = useState(false)
 
+    const minDate = calculatedDate(new Date(), 1)
+    const maxDate = calculatedDate(new Date(), 15)
 
     useEffect(() => {
         const handleEscKey = (event) => {
@@ -83,6 +86,8 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                     id="startDate"
                     value={startDate}
                     onChange={(event) => setStartDate(event.target.value)}
+                    min={minDate}
+                    max={maxDate}
                     required
                     className={styles.input}
                 />
@@ -95,6 +100,8 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                     id="endDate"
                     value={endDate}
                     onChange={(event) => setEndDate(event.target.value)}
+                    min={minDate}
+                    max={maxDate}
                     required
                     className={styles.inputEndDate}
                 />
@@ -104,7 +111,8 @@ const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
                 <button type="button" onClick={handleClearForm} className={styles.btn}>
                     Cancel
                 </button>
-                <button type="button" form="tripForm" className={styles.btnSave} onClick={handleSubmitForm}
+                <button type="button" form="tripForm" className={isFormValid ? styles.btnSave : styles.btnSaveDisabled}
+                        onClick={handleSubmitForm}
                         disabled={!isFormValid}>
                     Save
                 </button>
