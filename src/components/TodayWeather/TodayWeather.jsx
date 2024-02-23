@@ -7,8 +7,6 @@ import ping from "../../../public/assets/images/ping-icon.png"
 
 const TodayWeather = ({city, weatherToday, startDate}) => {
     const weather = weatherToday && weatherToday[0];
-    console.log("icons", icons)
-    console.log("weatherToday", weather)
 
     if (!weather) {
         return null;

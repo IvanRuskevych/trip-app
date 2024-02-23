@@ -1,5 +1,4 @@
 export function getDayOfWeek(date) {
-    // const date = new Date(date);
     const dayOfWeek = new Date(date).getDay();
 
     const daysOfWeek = [
@@ -14,7 +13,3 @@ export function getDayOfWeek(date) {
 
     return daysOfWeek[dayOfWeek]?.day;
 }
-
-// const startDate = "2024-02-22";
-// const dayOfWeek = getDayOfWeek(startDate);
-// console.log("dayOfWeek", dayOfWeek);
