@@ -6,6 +6,7 @@ import styles from "./TripsList.module.scss"
 import searchIcon from "../../../public/assets/svg/search.svg"
 import imgs from "../../../public/assets/images/london.jpg"
 import images from "../../../public/assets/images"
+import {sortTripsByStartDate} from "../../utils/sortTripsByStartDate.js";
 
 const initialSelectedTrip = [
     {city: "London", startDate: new Date().toISOString().slice(0, 10), endDate: new Date().toISOString().slice(0, 10)}]
@@ -16,7 +17,7 @@ const TripsList = ({onTripSelect}) => {
     const [showModal, setShowModal] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [filteredTrips, setFilteredTrips] = useState([]);
-
+    console.log("trips", trips)
 
     const modifiedText = (text) => {
         return text.replace(/\s/g, "").toLowerCase();
@@ -24,6 +25,7 @@ const TripsList = ({onTripSelect}) => {
 
     useEffect(() => {
         const storedTrips = JSON.parse(localStorage.getItem('trips'));
+
         if (storedTrips) {
             setTrips(storedTrips)
         } else {
@@ -48,7 +50,8 @@ const TripsList = ({onTripSelect}) => {
     }, [searchText, trips]);
 
     const addTrip = (trip) => {
-        setTrips(prevTrips => [...prevTrips, trip]);
+        setTrips(prevTrips => sortTripsByStartDate([...prevTrips, trip]));
+        // setTrips(sortTripsByStartDate(prevTrips => [...prevTrips, trip]));
     };
 
 
