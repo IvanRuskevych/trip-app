@@ -12,7 +12,7 @@ function App() {
     const [selectedTrip, setSelectedTrip] = useState(null)
     const [weatherWeek, setWeatherWeek] = useState(null)
     const [weatherToday, setWeatherToday] = useState(null)
-    const [city, setCity] = useState("")
+    const [city, setCity] = useState("London")
     const [startDate, setStartDate] = useState("")
 
     const handleTripSelect = (trip) => {

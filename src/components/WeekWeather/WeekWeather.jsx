@@ -18,7 +18,6 @@ const WeekWeather = ({weatherWeek}) => {
     );
 };
 
-
 WeekWeather.propTypes = {
     weatherWeek: PropTypes.array
 }

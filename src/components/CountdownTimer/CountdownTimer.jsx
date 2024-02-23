@@ -1,11 +1,9 @@
-import styles from "./CountdownTimer.module.scss"
 import PropTypes from "prop-types";
-import {useCountdown} from "../../hooks/useCountdown.js";
+import {useCountdown} from "../../hooks";
+import styles from "./CountdownTimer.module.scss"
 
 const CountdownTimer = ({startDate}) => {
-
     const [days, hours, minutes, seconds] = useCountdown((startDate))
-
     const isValid = days + hours + minutes + seconds > 0
 
     return (

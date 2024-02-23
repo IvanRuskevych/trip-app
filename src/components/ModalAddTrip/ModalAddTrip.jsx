@@ -1,11 +1,9 @@
-import PropTypes from "prop-types";
 import {useState, useEffect} from "react";
-
-import icon from '../../../public/assets/svg/close.svg';
+import PropTypes from "prop-types";
+import {calculatedDate} from "../../utils";
+import {cities} from "../../data";
 import styles from "./ModalAddTrip.module.scss";
-
-import {cities} from "../../data/index.js";
-import {calculatedDate} from "../../utils/index.js";
+import icon from '../../../public/assets/svg/close.svg';
 
 const ModalAddTrip = ({addTrip, isOpenModal, setIsOpenModal}) => {
     const [city, setCity] = useState("");
